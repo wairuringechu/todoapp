@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <body>
+    <h1>TODO APP</h1>
+      <h2>Create Task</h2>
+      <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title">
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description"></textarea>
+      </div>
+      <div>
+        <label for="expected-completion-date">completionDate</label>
+        <input type="date" id="expected-completion-date">
+      </div>
+      <div>
+        <button type="button" onclick="submitTask()">submit Task</button>
+
+      </div>
+    <hr>
+    <h2>Task List</h2>
+    <ul class="task-list" id="task-list"></ul>
+    </body>
+    </head>
+</html>
+    <script>
+      // An array to store the task objects
+      let tasks = [];
+
+      // Function to create a task
+      function createTask() {
+        // Get the values from the form inputs
+        let title = document.getElementById("title").value;
+        let description = document.getElementById("description").value;
+        let expectedCompletionDate = document.getElementById("expected-completion-date").value;
+
+        // Create a new task object
+        let task = {
+          title: title,
+          description: description,
+          expectedCompletionDate: expectedCompletionDate,
+          completionDate: null,
+          isCompleted: false
+        };
+
+        // Add the task to the tasks array
+        tasks.push(task);
+
+        // Clear the form inputs
+        document.getElementById("title").value = "";
+        document.getElementById("description").value = "";
+        document.getElementById("expected-completion-date").value = "";
+
+        // Render the updated task list
+        renderTaskList();
+      }
+
+      // Function to render the task list
+      function renderTaskList() {
+        // Get the task list element
+        let taskListElement = document.getElementById("task-list");
+
+        // Clear the existing task list
+        taskListElement.innerHTML = "";
+
+        // Loop through the tasks array
+        for (let i = 0; i < tasks.length; i++) {
+          let task = tasks[i];
+
+          // Create a new task item element
+          let taskItemElement = document.createElement("li");
+          taskItemElement.classList.add("task-item");
+
+          // Add the task title
+          let taskTitleElement = document.createElement("");
+          taskTitleElement.innerText = task.title
